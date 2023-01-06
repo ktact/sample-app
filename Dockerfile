@@ -19,6 +19,10 @@ RUN npx tsc
 # ランタイムステージ
 FROM node:18.12-alpine
 
+# PID1問題に対応する
+RUN apk add --no-cache tini
+ENTRYPOINT ["/sbin/tini", "--"]
+
 USER node
 WORKDIR /home/node/app
 
