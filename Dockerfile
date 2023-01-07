@@ -23,6 +23,8 @@ FROM node:18.12-alpine
 RUN apk add --no-cache tini
 ENTRYPOINT ["/sbin/tini", "--"]
 
+RUN apk update && apk add iproute2
+
 USER node
 WORKDIR /home/node/app
 
